@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מכון דוגמה | מאמן הכושר שלך</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;700;900&family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a08;
+    --charcoal: #141410;
+    --iron: #1e1e18;
+    --amber: #e8a020;
+    --amber-bright: #f5b83d;
+    --amber-dim: #9a6a10;
+    --cream: #f2ead8;
+    --cream-dim: #c8bfa8;
+    --white: #fafaf5;
+    --red-accent: #c0392b;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Assistant', sans-serif;
+    background: var(--black);
+    color: var(--cream);
+    direction: rtl;
+    text-align: right;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 48px;
+    background: rgba(10,10,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(232,160,32,0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 1.4rem;
+    color: var(--amber);
+    letter-spacing: -0.5px;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--cream-dim);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--amber); }
+
+  .nav-cta {
+    background: var(--amber);
+    color: var(--black) !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    font-weight: 800 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--amber-bright) !important; color: var(--black) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 48px 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(232,160,32,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 70%, rgba(192,57,43,0.08) 0%, transparent 60%),
+      var(--black);
+  }
+
+  .hero-grid-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,160,32,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,160,32,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(232,160,32,0.1);
+    border: 1px solid rgba(232,160,32,0.3);
+    border-radius: 2px;
+    padding: 8px 18px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .badge-dot {
+    width: 8px; height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  .hero-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.0;
+    color: var(--white);
+    margin-bottom: 8px;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero-title span {
+    color: var(--amber);
+    display: block;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--cream-dim);
+    font-weight: 300;
+    margin-bottom: 48px;
+    max-width: 600px;
+    line-height: 1.7;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--amber);
+    color: var(--black);
+    padding: 16px 36px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.3px;
+  }
+
+  .btn-primary:hover { background: var(--amber-bright); transform: translateY(-2px); }
+
+  .btn-secondary {
+    display: inline-block;
+    border: 2px solid rgba(232,160,32,0.5);
+    color: var(--amber);
+    padding: 14px 34px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--amber); background: rgba(232,160,32,0.08); }
+
+  .hero-stats {
+    position: absolute;
+    left: 48px;
+    bottom: 80px;
+    display: flex;
+    gap: 48px;
+    z-index: 2;
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--cream-dim);
+    letter-spacing: 1px;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    right: 50%;
+    transform: translateX(50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--cream-dim);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--amber), transparent);
+    animation: scrollPulse 2s infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%,100% { opacity: 0.3; } 50% { opacity: 1; }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 48px; }
+
+  .section-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    position: relative;
+    padding-right: 24px;
+  }
+
+  .section-label::before {
+    content: '';
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 14px; height: 2px;
+    background: var(--amber);
+  }
+
+  .section-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #about::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(232,160,32,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .about-text p {
+    color: var(--cream-dim);
+    font-size: 1.05rem;
+    line-height: 1.9;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .about-quote {
+    margin-top: 40px;
+    border-right: 3px solid var(--amber);
+    padding-right: 24px;
+    font-size: 1.15rem;
+    color: var(--cream);
+    font-style: italic;
+    font-family: 'Frank Ruhl Libre', serif;
+    line-height: 1.8;
+    font-weight: 400;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .kettlebell-graphic {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+  }
+
+  .kb-card {
+    background: var(--iron);
+    border: 1px solid rgba(232,160,32,0.15);
+    border-radius: 4px;
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kb-card::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle at top right, rgba(232,160,32,0.08), transparent 70%);
+  }
+
+  .kb-icon {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+  }
+
+  .kb-card h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 1.4rem;
+    color: var(--white);
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .kb-card p {
+    color: var(--cream-dim);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .feature-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .chip {
+    background: rgba(232,160,32,0.08);
+    border: 1px solid rgba(232,160,32,0.25);
+    color: var(--amber);
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── REVIEWS ── */
+  #reviews {
+    background: var(--charcoal);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #reviews::after {
+    content: '5.0';
+    position: absolute;
+    left: -20px; top: 40px;
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 18rem;
+    font-weight: 900;
+    color: rgba(232,160,32,0.04);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .reviews-header {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 24px;
+    position: relative;
+  }
+
+  .reviews-score {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .score-big {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+  }
+
+  .score-details { display: flex; flex-direction: column; gap: 4px; }
+
+  .stars { color: var(--amber); font-size: 1.2rem; letter-spacing: 2px; }
+
+  .review-count { color: var(--cream-dim); font-size: 0.9rem; }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .review-card {
+    background: var(--iron);
+    border: 1px solid rgba(232,160,32,0.08);
+    border-radius: 4px;
+    padding: 28px;
+    transition: border-color 0.3s;
+  }
+
+  .review-card:hover { border-color: rgba(232,160,32,0.25); }
+
+  .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .reviewer-name {
+    font-weight: 700;
+    color: var(--white);
+    font-size: 1rem;
+  }
+
+  .reviewer-meta {
+    color: var(--cream-dim);
+    font-size: 0.8rem;
+    margin-top: 3px;
+  }
+
+  .review-stars { color: var(--amber); font-size: 0.9rem; }
+
+  .review-text {
+    color: var(--cream-dim);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #contact::before {
+    content: '';
+    position: absolute;
+    bottom: -200px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(232,160,32,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .contact-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .contact-header { margin-bottom: 60px; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .contact-info { display: flex; flex-direction: column; gap: 28px; }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px;
+    background: var(--iron);
+    border: 1px solid rgba(232,160,32,0.1);
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+
+  .info-item:hover { border-color: rgba(232,160,32,0.3); }
+
+  .info-icon {
+    width: 44px; height: 44px;
+    background: rgba(232,160,32,0.1);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .info-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .info-value {
+    color: var(--cream);
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-decoration: none;
+  }
+
+  a.info-value:hover { color: var(--amber); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+  .form-group label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--amber);
+    text-transform: uppercase;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: var(--iron);
+    border: 1px solid rgba(232,160,32,0.2);
+    border-radius: 2px;
+    padding: 14px 18px;
+    color: var(--white);
+    font-family: 'Assistant', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    direction: rtl;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    resize: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--amber);
+    background: rgba(232,160,32,0.04);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(200,191,168,0.4); }
+
+  .form-submit {
+    background: var(--amber);
+    color: var(--black);
+    border: none;
+    padding: 16px 32px;
+    font-family: 'Assistant', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+    direction: rtl;
+  }
+
+  .form-submit:hover { background: var(--amber-bright); transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal);
+    border-top: 1px solid rgba(232,160,32,0.1);
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-logo {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--amber);
+  }
+
+  .footer-copy {
+    color: var(--cream-dim);
+    font-size: 0.85rem;
+  }
+
+  .footer-phone {
+    color: var(--amber);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+    direction: ltr;
+  }
+
+  .footer-phone:hover { color: var(--amber-bright); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to left, transparent, rgba(232,160,32,0.2), transparent);
+    margin: 0;
+  }
+
+  /* ── FLOATING CTA ── */
+  .floating-cta {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+    z-index: 90;
+    background: var(--amber);
+    color: var(--black);
+    padding: 14px 24px;
+    border-radius: 2px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 8px 32px rgba(232,160,32,0.3);
+    transition: background 0.2s, transform 0.15s, opacity 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    direction: rtl;
+  }
+
+  .floating-cta:hover { background: var(--amber-bright); transform: translateY(-2px); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 14px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    #hero { padding: 100px 24px 160px; }
+    .hero-stats { left: 24px; bottom: 60px; gap: 28px; }
+    .stat-num { font-size: 2rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    footer { padding: 28px 24px; text-align: center; flex-direction: column; }
+    .floating-cta { left: 50%; transform: translateX(-50%); white-space: nowrap; }
+    .floating-cta:hover { transform: translateX(-50%) translateY(-2px); }
+    #reviews::after { font-size: 8rem; }
+    .reviews-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">⚙ מכון דוגמה</span>
+  <ul class="nav-links">
+    <li><a href="#about">אודות</a></li>
+    <li><a href="#services">שירותים</a></li>
+    <li><a href="#reviews">המלצות</a></li>
+    <li><a href="#contact" class="nav-cta">צור קשר</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+     אזור
+    </div>
+
+    <h1 class="hero-title">
+      מאמן הכושר<br>
+      <span>שלך ב"אזור"</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      משפט לשים כאן דוגמה
+    </p>
+
+    <div class="hero-actions">
+      <a href="tel:0524584417" class="btn-primary">📞 התקשר עכשיו</a>
+      <a href="#services" class="btn-secondary">גלה את השירותים</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">43</div>
+      <div class="stat-label">ביקורות</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5.0</div>
+      <div class="stat-label">דירוג ממוצע</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5+</div>
+      <div class="stat-label">שנות ניסיון</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>גלול למטה</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <span class="section-label">אודות מכון</span>
+      <h2 class="section-title">מקצועיות, סבלנות ותשוקה אמיתית לספורט</h2>
+      <p>
+        עוד משפט להוסיף דוגמה
+      </p>
+      <p>
+        משפט של המאמן על התחום.
+      </p>
+      <blockquote class="about-quote">
+        "בין אם רק החלטת להתחיל להתאמן ובין אם כבר יש מאחוריך רקורד מפואר בעולם הספורט, באימון הזה מתאהבים בקלות."
+        <br><br>— מכון
+      </blockquote>
+      <div class="feature-chips">
+        <span class="chip">✓ שירות</span>
+        <span class="chip">✓ שירות</span>
+        <span class="chip">✓ שירות</span>
+        <span class="chip">✓ שירות</span>
+        <span class="chip">✓ שירות</span>
+      </div>
+    </div>
+
+    <div class="about-visual reveal">
+      <div class="kb-card">
+        <div class="kb-icon">🏋️</div>
+        <h3>עשרות תרגילים ייחודיים</h3>
+        <p>מגוון תרגילי קטלבלס לכל קבוצות השריר, שילוכם יעשיר את ארגז הכלים שלך ויהפוך כל אימון להנאה.</p>
+      </div>
+      <div class="kb-card" style="margin-top: 20px; border-right: 3px solid var(--amber);">
+        <div class="kb-icon">🎯</div>
+        <h3>תוכנית אינדיווידואלית</h3>
+        <p>כל מתאמן מקבל תוכנית אימון מותאמת אישית לרמתו, ליעדיו ולמגבלותיו הגופניות.</p>
+      </div>
+      <div class="kb-card" style="margin-top: 20px;">
+        <div class="kb-icon">📍</div>
+        <h3>גמישות במיקום</h3>
+        <p>אימונים בסטודיו, בחוץ, בפארק, בחוף הים או בבית — מה שנוח לך.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="reviews-header reveal">
+    <div>
+      <span class="section-label">לקוחות מרוצים</span>
+      <h2 class="section-title">מה אומרים עליי</h2>
+    </div>
+    <div class="reviews-score">
+      <div class="score-big">5.0</div>
+      <div class="score-details">
+        <div class="stars">★★★★★</div>
+        <div class="review-count">43 ביקורות ב-Google</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-header">
+        <div>
+          <div class="reviewer-name">Atalya Saguy</div>
+          <div class="reviewer-meta">לפני חודשיים</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">משפט של מתאמן</p>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-header">
+        <div>
+          <div class="reviewer-name">Luba Kolik</div>
+          <div class="reviewer-meta">לפני חודשיים</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">משפט של מתאמן</p>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-header">
+        <div>
+          <div class="reviewer-name">שרה כהן</div>
+          <div class="reviewer-meta">לפני חודשיים</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">משפט של מתאמן.</p>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-header">
+        <div>
+          <div class="reviewer-name">Ido Tulman</div>
+          <div class="reviewer-meta">לפני חודשיים</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">משפט של מתאמן.</p>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-header">
+        <div>
+          <div class="reviewer-name">Einav Brin</div>
+          <div class="reviewer-meta">לפני חודשיים</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">משפט של מתאמן</p>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-header">
+        <div>
+          <div class="reviewer-name">Y.O.G</div>
+          <div class="reviewer-meta">לפני חודשיים</div>
+        </div>
+        <div class="review-stars">★★★★★</div>
+      </div>
+      <p class="review-text">משפט של מתאמן</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-header reveal">
+      <span class="section-label">יצירת קשר</span>
+      <h2 class="section-title">בואו נתחיל יחד</h2>
+      <p style="color: var(--cream-dim); font-size: 1.05rem; max-width: 500px; line-height: 1.7; font-weight: 300;">
+        מוכן להתחיל? יש שאלה? צור קשר ומכון יחזור אליך בהקדם.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div>
+            <div class="info-label">טלפון</div>
+            <a href="tel:0524584417" class="info-value">052-458-4417</a>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">כתובת</div>
+            <span class="info-value">מיקום</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">🕐</div>
+          <div>
+            <div class="info-label">שעות פעילות</div>
+            <span class="info-value">פתוח כל השבוע · סגירה בשעה 22:00</span>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">🌍</div>
+          <div>
+            <div class="info-label">אזורי שירות</div>
+            <span class="info-value">אזור</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-group">
+          <label for="name">שם מלא</label>
+          <input type="text" id="name" placeholder="מה שמך?" />
+        </div>
+        <div class="form-group">
+          <label for="phone">טלפון</label>
+          <input type="tel" id="phone" placeholder="050-000-0000" />
+        </div>
+        <div class="form-group">
+          <label for="message">הודעה</label>
+          <textarea id="message" rows="4" placeholder="מה מעניין אותך? כתוב לי כאן..."></textarea>
+        </div>
+        <button class="form-submit" onclick="handleSubmit()">שלח הודעה ←</button>
+        <div id="form-success" style="display:none; margin-top:12px; color: var(--amber); font-weight:700; font-size:0.95rem;">
+          ✓ ההודעה נשלחה! נחזור אליך בהקדם.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">מכון דוגמה</span>
+  <span class="footer-copy">© 2025 · כל הזכויות שמורות</span>
+  <a href="tel:0524584417" class="footer-phone" dir="ltr">052-458-4417</a>
+</footer>
+
+<!-- FLOATING CTA -->
+<a href="tel:0524584417" class="floating-cta">
+  📞 התקשר עכשיו
+</a>
+
+<script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Stagger cards in same section
+  document.querySelectorAll('.services-grid .service-card, .reviews-grid .review-card').forEach((el, i) => {
+    el.style.transitionDelay = (i * 80) + 'ms';
+  });
+
+  // Nav scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = window.scrollY > 80 
+      ? 'rgba(10,10,8,0.97)' 
+      : 'rgba(10,10,8,0.92)';
+  });
+
+  // Form submit
+  function handleSubmit() {
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    if (!name || !phone) { alert('אנא מלא שם וטלפון'); return; }
+    document.getElementById('form-success').style.display = 'block';
+    document.getElementById('name').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('message').value = '';
+  }
+</script>
+</body>
+</html>
